@@ -4,20 +4,21 @@ import requests
 import bs4
 from bs4 import BeautifulSoup
 
-contest = __file__[18:-12].lower()
-dirpath = __file__[:25] + 'testcase'
-
+problem = os.environ["problem"]
+file_path = os.environ["contest"]
+dirpath = file_path + "\\testcase"
+contest = file_path[-6:].lower()
 
 def scraping():
     contest_type = contest[:3] 
     contest_number = int(contest[3:])
 
-    if (contest_type == 'abc' and 126 <= contest_number) or contest_type == 'agc' or (contest_type == 'arc' and 104 <= contest_number):
-        difficulties = ['a', 'b', 'c', 'd', 'e', 'f']
-    elif contest_type == 'arc' and 58 <= contest_number <= 103:
-        difficulties = ['c', 'd', 'e', 'f']
+    if (contest_type == "abc" and 126 <= contest_number) or contest_type == "agc" or (contest_type == "arc" and 104 <= contest_number):
+        difficulties = ["a", "b", "c", "d", "e", "f"]
+    elif contest_type == "arc" and 58 <= contest_number <= 103:
+        difficulties = ["c", "d", "e", "f"]
     else:
-        difficulties = ['a', 'b', 'c', 'd']
+        difficulties = ["a", "b", "c", "d"]
 
     for difficulty in difficulties:
         problem_url = "https://atcoder.jp/contests/" + contest + "/tasks/" + contest +  "_" + difficulty
@@ -35,13 +36,13 @@ def scraping():
 
                 in_path = dirpath + "/input_" + difficulty.upper() + str(case_number) + ".txt"
                 f_in = open(in_path, "w")
-                testcase[i] = testcase[i].replace('\n', '')
+                testcase[i] = testcase[i].replace("\n", "")
                 f_in.write(testcase[i])
                 f_in.close()
 
                 out_path = dirpath + "/output_" + difficulty.upper() + str(case_number) + ".txt"
                 f_out = open(out_path, "w")
-                testcase[i+1] = testcase[i+1].replace('\n', '')
+                testcase[i+1] = testcase[i+1].replace("\n", "")
                 f_out.write(testcase[i + 1])
                 f_out.close()
         else:
@@ -50,13 +51,13 @@ def scraping():
 
                 in_path = dirpath + "/input_" + difficulty.upper() + str(case_number) + ".txt"
                 f_in = open(in_path, "w")
-                testcase[i] = testcase[i].replace('\n', '')
+                testcase[i] = testcase[i].replace("\n", "")
                 f_in.write(testcase[i])
                 f_in.close()
 
                 out_path = dirpath + "/output_" + difficulty.upper() + str(case_number) + ".txt"
                 f_out = open(out_path, "w")
-                testcase[i+1] = testcase[i+1].replace('\n', '')
+                testcase[i+1] = testcase[i+1].replace("\n", "")
                 f_out.write(testcase[i + 1])
                 f_out.close()
     return

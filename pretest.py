@@ -7,9 +7,9 @@ import subprocess
 from scraping import scraping
 
 TLE = 2.0
-problem = os.environ['problem']
-dirpath = __file__[:25] + 'testcase'
-
+problem = os.environ["problem"]
+contest = os.environ["contest"]
+dirpath = contest + "\\testcase"
 
 def main():
     # make a directory of testcases
@@ -35,8 +35,8 @@ def main():
         data = f.read()
         f.close()
         with open(in_path) as fin:
-            with open(res_path, 'w') as fres:
-                subprocess.run('python ' + __file__[:25] + problem + '.py', stdin=fin, stdout=fres, timeout=TLE, shell = True)
+            with open(res_path, "w") as fres:
+                subprocess.run("python " + contest + "\\" + problem + ".py", stdin=fin, stdout=fres, timeout=TLE, shell = True)
         
         # check the response
         f_out = open(out_path, "r")
