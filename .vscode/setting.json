@@ -1,0 +1,8 @@
+{
+    "editor.mouseWheelZoom": true,
+    "files.autoSave": "afterDelay",
+    "files.eol": "\n",
+    "python.dataScience.sendSelectionToInteractiveWindow": false,
+    "window.zoomLevel": -1
+
+}
