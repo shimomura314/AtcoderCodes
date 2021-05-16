@@ -15,13 +15,28 @@ def scraping():
 
     if (contest_type == "abc" and 126 <= contest_number) or contest_type == "agc" or (contest_type == "arc" and 104 <= contest_number):
         difficulties = ["a", "b", "c", "d", "e", "f"]
-    elif contest_type == "arc" and 58 <= contest_number <= 103:
-        difficulties = ["c", "d", "e", "f"]
     else:
         difficulties = ["a", "b", "c", "d"]
+    
+    mixed_ABC_number = [
+        102, 101, 98, 97, 95, 94, 93, 92, 91, 90, 
+        87, 86, 83, 82, 81, 78, 77, 74, 73, 71, 
+        69, 68, 67, 66, 65, 63, 62, 60, 59, 58, 
+        56, 55, 53, 52, 50, 49, 48, 47, 46, 45, 
+        44, 43, 42
+        ]
+    mixed_ABC = {}
+    for i in range(len(mixed_ABC_number)):
+        mixed_ABC[ mixed_ABC_number[i] ] = "arc%03d" %(100-i)
 
     for difficulty in difficulties:
-        problem_url = "https://atcoder.jp/contests/" + contest + "/tasks/" + contest +  "_" + difficulty
+        if contest_type == "abc" and (contest_number in mixed_ABC_number) and (difficulty == "c" or difficulty == "d"):
+            if difficulty == "c":
+                problem_url = "https://atcoder.jp/contests/" + contest + "/tasks/" + mixed_ABC[contest_number] +  "_a"
+            if difficulty == "d":
+                problem_url = "https://atcoder.jp/contests/" + contest + "/tasks/" + mixed_ABC[contest_number] +  "_b"
+        else:
+            problem_url = "https://atcoder.jp/contests/" + contest + "/tasks/" + contest +  "_" + difficulty
         problem_html = requests.get(problem_url)
         problem_soup = BeautifulSoup(problem_html.content, "html.parser")
         testcase = []
