@@ -1,0 +1,5 @@
+s = list(input())
+a = "".join(s[:5])
+b = "".join(s[6:13])
+c = "".join(s[14:21])
+print(a,b,c)
