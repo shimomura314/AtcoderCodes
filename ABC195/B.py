@@ -30,5 +30,6 @@ def main():
 
     print(minimam, maximam)
 
+
 if __name__ == "__main__":
     main()
