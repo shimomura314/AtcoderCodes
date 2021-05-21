@@ -24,6 +24,7 @@ def main():
             tuple_y.pop(a[i-m])
             ans = min(ans, a[i-m])
     print(ans)
-    
+
+
 if __name__ == "__main__":
     main()

@@ -6,5 +6,6 @@ def main():
             answer += n-10**i+1
     print(answer)
 
+
 if __name__ == "__main__":
     main()
