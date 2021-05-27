@@ -1,0 +1,10 @@
+n←(標準入力)
+k←(標準入力)
+ans←0
+for a_1=1..n
+  for a_2=a_1..n
+    for a_3=a_2..n
+      …
+      for a_k=a_{k-1}..n // a_0=1とする
+        ans ← ans+1
+ansの値を表示
