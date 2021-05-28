@@ -21,9 +21,7 @@ def scraping():
     contest_number = int(contest[3:])
 
     # URL setting be contest
-    if contest_type == "abc" and contest_number < 20:
-        difficulties = ["1", "2", "3", "4"]
-    elif (contest_type == "abc" and 126 <= contest_number) or contest_type == "agc" or (contest_type == "arc" and 104 <= contest_number):
+    if (contest_type == "abc" and 126 <= contest_number) or contest_type == "agc" or (contest_type == "arc" and 104 <= contest_number):
         difficulties = ["a", "b", "c", "d", "e", "f"]
     else:
         difficulties = ["a", "b", "c", "d"]
@@ -46,6 +44,8 @@ def scraping():
                 problem_url = "https://atcoder.jp/contests/" + contest + "/tasks/" + mixed_ABC[contest_number] +  "_a"
             if difficulty == "d":
                 problem_url = "https://atcoder.jp/contests/" + contest + "/tasks/" + mixed_ABC[contest_number] +  "_b"
+        elif contest_type == "abc" and contest_number < 20:
+            problem_url = "https://atcoder.jp/contests/" + contest + "/tasks/" + contest +  "_" + str(ord(difficulty)-96)
         else:
             problem_url = "https://atcoder.jp/contests/" + contest + "/tasks/" + contest +  "_" + difficulty
         problem_html = requests.get(problem_url)
