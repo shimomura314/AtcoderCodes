@@ -1,1 +1,6 @@
-print(0)
+s = str(input())
+if s[-1] != "s":
+    s += "s"
+else:
+    s += "es"
+print(s)
